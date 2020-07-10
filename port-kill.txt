@@ -1,0 +1,4 @@
+
+netstat -nlp | grep :4000
+
+kill 4000
