@@ -10,6 +10,9 @@ const productRoutes = require("./api/routes/productsRoutes");
 const dragDropRoutes = require("./api/routes/dragDropRoutes");
 const projectBoardRoutes = require("./api/routes/projectBoardRoutes");
 
+const projectRoutes = require("./api/routes/projectRoutes");
+
+
 connectDB();
 
 app.use(morgan("dev"));
@@ -39,7 +42,12 @@ app.use("/products", productRoutes);
 app.use("/table", dragDropRoutes);
 // app.use("/order", orderRoutes);
 
+//not working correctly
 app.use("/project", projectBoardRoutes);
+
+//working (used in main project)
+app.use("/Project", projectRoutes);
+
 
 app.use((req, res, next) => {
   const error = new Error("not found");
