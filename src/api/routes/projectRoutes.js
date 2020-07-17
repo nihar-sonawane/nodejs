@@ -2,18 +2,17 @@ const express = require("express");
 const router = express.Router();
 const mongooes = require("mongoose");
 
-const projectBoard = require("../controller/projectsController");
+const projects = require("../controller/projectsController");
 
-//to create a new project
-router.post("/createProject", projectBoard.postProject);
+//for new project
+router.post("/createProject", projects.postProject);
 
-router.get("/getAllProjects", projectBoard.getProject);
+router.get("/getAllProjects", projects.getProject);
 
-router.patch("/updateProjectName/:_idProject", projectBoard.updateProjectName);
+router.patch("/updateProjectName/:_idProject", projects.updateProjectName);
 
-router.delete(
-  "/deleteProjectBoard/:_idProject",
-  projectBoard.deleteProjectBoard
-);
+router.delete("/deleteProjectBoard/:_idProject", projects.deleteProjectBoard);
+
+router.put("/editProject/:_idProject", projects.editProject);
 
 module.exports = router;

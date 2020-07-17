@@ -2,16 +2,23 @@ const express = require("express");
 const router = express.Router();
 const mongooes = require("mongoose");
 
-const project = require("../controller/projectController");
+const projectBoards = require("../controller/projectBoardController");
 
-//from app.js
+//to add boards in new project
+router.post("/createProjectBoard/:_idProject", projectBoards.postProjectBoard);
 
-//for single section of board/column
-router.post("/postProject", project.postProject);
+router.get("/getAllProjectBoard/:_id", projectBoards.getProjectBoard);
 
-// router.get("/:_idProject", project.getProject);
+router.delete(
+  "/deleteProjectColumn/:_idProject/:_id",
+  projectBoards.deleteProjectColumn
+);
 
-// putProject
-router.put("/test/:_idProject", project.putProject);
+router.patch(
+  "/updateProjectColumn/:_id/:boardTitle",
+  projectBoards.updateProjectColumnName
+);
+
+
 
 module.exports = router;

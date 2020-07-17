@@ -11,7 +11,7 @@ const dragDropRoutes = require("./api/routes/dragDropRoutes");
 const projectBoardRoutes = require("./api/routes/projectBoardRoutes");
 
 const projectRoutes = require("./api/routes/projectRoutes");
-
+const projectBoardCardsRoutes = require("./api/routes/projectBoardCardsRoutes");
 
 connectDB();
 
@@ -42,12 +42,14 @@ app.use("/products", productRoutes);
 app.use("/table", dragDropRoutes);
 // app.use("/order", orderRoutes);
 
-//not working correctly
-app.use("/project", projectBoardRoutes);
-
 //working (used in main project)
 app.use("/Project", projectRoutes);
 
+//for project Board
+app.use("/projectBoard", projectBoardRoutes);
+
+//for project board cards
+app.use("/projectBoardCards", projectBoardCardsRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("not found");

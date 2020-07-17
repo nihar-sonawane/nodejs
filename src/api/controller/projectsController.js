@@ -28,7 +28,7 @@ exports.postProject = (req, res) => {
 exports.getProject = (req, res) => {
   projectDragDropSchema
     .find()
-    // .select("name price _id")
+    .select("projectTitle boards _idProject")
     .exec()
     .then((projects) => {
       console.log("all projects=>", projects);
@@ -71,21 +71,42 @@ exports.updateProjectName = (req, res) => {
     });
 };
 
-
 exports.deleteProjectBoard = (req, res, next) => {
-    const id = req.params._idProject;
-    projectDragDropSchema.remove({ _idProject: id })
-      .exec()
-      .then((result) => {
-        res.status(200).json({
-          message: "Project deleted",
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+  const id = req.params._idProject;
+  projectDragDropSchema
+    .remove({ _idProject: id })
+    .exec()
+    .then((result) => {
+      res.status(200).json({
+        message: "Project deleted",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+      });
+    });
+};
+
+exports.editProject = (req, res, next) => {
+  const obj = req.body;
+  const id = req.params._idProject;
+  projectDragDropSchema.findOneAndUpdate(
+    { _id: id },
+    { $set: { boards: obj.boards } },
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log("Something wrong when updating data!");
         res.status(500).json({
           error: err,
         });
-      });
-  };
-  
+      }
+      res.status(200).json({ message: "yes" });
+
+      console.log(doc);
+    }
+  );
+};
+

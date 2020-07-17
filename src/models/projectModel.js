@@ -9,13 +9,13 @@ const projectDragDropSchema = mongoose.Schema({
       boardTitle: { type: String, required: false },
       cards: [
         {
-          type: new mongoose.Schema(
-            {
-              cardId: { type: mongoose.Schema.Types.ObjectId, required: true },
-              cardTitle: { type: String, required: false },
-            }
-            // { minimize: false }
-          ),
+          // type: new mongoose.Schema(
+          // {
+          cardId: { type: mongoose.Schema.Types.ObjectId, required: true },
+          cardTitle: { type: String, required: false },
+          // }
+          // { minimize: false }
+          // ),
           required: false,
         },
       ],
@@ -25,3 +25,5 @@ const projectDragDropSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model("ProjectDragDrop", projectDragDropSchema);
+
+
