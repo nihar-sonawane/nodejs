@@ -15,6 +15,7 @@
     "mongoose": "^5.9.22",
     "morgan": "^1.10.0",
     "node-uuid": "^1.4.8",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "shortid": "^2.2.15"
   }
 }

@@ -26,6 +26,7 @@ exports.getProjectBoard = (req, res) => {
   const id = req.params._id;
   projectDragDropSchema
     .findById(id)
+    .populate("boards.cards")
     .exec()
     .then((projectBoards) => {
       console.log("all boards of a projects=>", projectBoards);

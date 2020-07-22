@@ -28,6 +28,7 @@ exports.postProject = (req, res) => {
 exports.getProject = (req, res) => {
   projectDragDropSchema
     .find()
+    .populate("boards.cards")
     .select("projectTitle boards _idProject")
     .exec()
     .then((projects) => {
@@ -109,4 +110,3 @@ exports.editProject = (req, res, next) => {
     }
   );
 };
-

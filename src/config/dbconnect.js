@@ -14,6 +14,9 @@ const connectDB = () => {
     )
     .then((body) => {
       console.log("Mongo Connected...");
+    })
+    .catch((body) => {
+      console.log("Connectoin failed");
     });
 };
 
