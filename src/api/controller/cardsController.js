@@ -89,11 +89,24 @@ exports.deletetCheckListItem = async (req, res) => {
 
 exports.replaceCheckListItem = async (req, res) => {
   const cardId = req.params._id;
-  const newCard = req.body;
-  console.log("carId body Checklist=>", cardId, newCard);
+  const checkListID = req.body._id;
+  // const newCard = req.body;
 
-  // const result = await cardsSchema.findByIdAndUpdate(cardsId, newCard);
-  // res.status(200).json({ succes: true, message: result });
-  cardsSchema.update({});
+  const newCheckListItem = {
+    checkListName: req.body.checkListName,
+    statusVal: req.body.statusVal,
+    _id: req.body._id,
+  };
+  // console.log("IIDDD===>>> please", cardId, checkListID, newCheckListItem);
+  const checkList = await cardsSchema.updateOne(
+    {
+      _id: cardId,
+      "checkList._id": checkListID,
+    },
+    {
+      $set: { "checkList.$": newCheckListItem },
+    }
+  );
+  res.status(200).json(checkList);
 };
 // update({ "boards._id": _id }, { $set: { "boards.$.boardTitle": boardTitle } });
