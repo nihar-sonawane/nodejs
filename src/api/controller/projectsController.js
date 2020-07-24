@@ -7,6 +7,17 @@ exports.postProject = (req, res) => {
     _idProject: new mongooes.Types.ObjectId(),
     projectTitle: req.body.projectTitle,
     // cards: [{}],
+    boards: [
+      {
+        boardTitle: "Open",
+      },
+      {
+        boardTitle: "In Progress",
+      },
+      {
+        boardTitle: "Done",
+      },
+    ],
   });
   project
     .save()
@@ -80,6 +91,7 @@ exports.deleteProjectBoard = (req, res, next) => {
     .then((result) => {
       res.status(200).json({
         message: "Project deleted",
+        res: 200,
       });
     })
     .catch((err) => {
